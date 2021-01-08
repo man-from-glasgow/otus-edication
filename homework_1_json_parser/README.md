@@ -1,13 +1,31 @@
-# JSON Parser
+# Домашнее задание №1 «Работа с файлами в формате JSON»
 
-## Assembly JAR file for project:
+##Задача
+1. Загрузить [файл](https://raw.githubusercontent.com/mledoze/countries/master/countries.json) с географическими данными различных стран
+2. Выбрать 10 стран Африки с наибольшей площадью
+3. Записать данные о выбранных странах в новый файл виде JSON. Структура файла:
+```json
+[
+  {
+    "name": <Официальное название страны на английском языке, строка>,
+    "capital": <Название столицы, строка> (если столиц перечисленно несколько, выберите первую),
+    "area": <Площадь страны в квадратных километрах, число>,
+  }
+]
+```
+4. Обеспечить приложение инструкциями для сборки JAR-файла, принимающего на вход имя выходного файла
+
+---
+## Документация для запуска приложения
+
+### Assembly JAR file for project:
 * Run command
 ```bash
 sbt assembly
 ```
 * Get file `json-parser-assembly-{VERSION}.jar` in directory `target/scala-2.12/`
 
-## Run parser
+### Run parser
 * Run command
 ```bash
 java -jar json-parser-assembly-0.0.1.jar {REGION} {FILENAME}

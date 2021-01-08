@@ -1,6 +1,15 @@
-# Kafka App
+# Домашнее задание №2 «Работа с файлами на HDFS»
 
-## Build & Prepare Kafka cluster
+## Задача
+Написать приложение, которое будет выполнять следующее:
+1. Вычитать из CSV-файла, который можно скачать по [ссылке](https://www.kaggle.com/sootersaalu/amazon-top-50-bestselling-books-2009-2019), данные, сериализовывать их в JSON, и записывать в топик **books**.
+2. Вычитать из топика **books** данные и распечатать в stdout последние 5 записей (c максимальным значением offset) из каждой партиции. При чтении топика одновременно можно хранить в памяти только 15 записей.
+
+---
+
+## Документация для запуска приложения
+
+### Build & Prepare Kafka cluster
 * Run command
 ```bash
 docker-compose up -d
@@ -15,14 +24,14 @@ docker exec homework_3_kafka_broker_1 kafka-topics \
   --topic books
 ```
 
-## Assembly JAR file for project:
+### Assembly JAR file for project:
 * Run command
 ```bash
 sbt assembly
 ```
 * Get file `kafka-app-assembly-{VERSION}.jar` in directory `target/scala-2.12/`
 
-## Run app
+### Run app
 * Run command
 ```bash
 java -jar kafka-app-assembly-{VERSION}.jar
