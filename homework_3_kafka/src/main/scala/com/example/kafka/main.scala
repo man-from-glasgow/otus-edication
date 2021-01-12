@@ -13,8 +13,6 @@ object main extends LazyLogging {
                   year: String,
                   genre: String)
 
-
-
   def source: BufferedSource = Source.fromResource("bestsellers_with_categories.csv")
 
   def parseHeaders(head: String): Map[String, Int] = {
@@ -22,7 +20,8 @@ object main extends LazyLogging {
   }
 
   def prepareCSV(row: String, headers: Map[String, Int]): Book = {
-    val data = row.split(",")
+    val data = row.split(""",(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)""");
+
     Book(
       data(headers("Name")),
       data(headers("Author")),
