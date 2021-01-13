@@ -68,7 +68,7 @@ object Consumer extends LazyLogging {
       println("--------------")
       println(s"Topic: $key")
       println("--------------")
-      buffer.get(key).foreach(println)
+      buffer.getOrDefault(key, List()).foreach(println)
     }
 
     consumer.close()
