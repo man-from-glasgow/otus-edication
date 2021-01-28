@@ -2,36 +2,15 @@
 
 ## Задача
 
-Написать Spark приложение на Scala, которое выполнит следующее:
-
-1. Получит список популярных районов для посадки
-   1. Загрузит данные в Dataframe
-   2. Используя DSL построит агрегацию
-   3. Выведет результат на экран
-   4. Сохранит результат в Parquet файл
-   
-2. Получит список в какое время происходит больше всего вызовов
-   1. Загрузит данные в RDD
-   2. Используя Lambda-функции построит агрегацию
-   3. Выведет результат на экран
-   4. Сохранит результат в txt файл с пробелами
-   
-3. Получит список распределения поездок по дистанции
-   1. Загрузит данные в Dataset
-   2. Используя DSL и Lambda-функции построит агрегацию
-   3. Выведет результат на экран
-   4. Сохранит результат в таблицу в PostgreSQL
+Используя DataSource API V2 написать Spark Connector для PostgreSQL:
+1. Доработать файл `PostgresqlDriver.scala` так, чтобы можно было читать таблицу users в несколько партиций.
+2. Добавить в тест дополнительный параметр указывающий размер партиции`option("partitionSize", "10")`
+3. Добавить проверку на количество партиции. Добиться прохождения теста
 
 ---
 
 ## Документация для запуска приложения
 
-### Build & Prepare PostgreSQL
-* Run command
-```bash
-docker-compose up -d
-```
-
-### Run spark job in IDEA
-* Go to project file `src/main/scala/com/example/data_api/main.scala`
-* Run `main`
+### Run spark postgresql datasource in IDEA
+* Go to project test file `src/test/scala/org/example/PostgresqlDriverTest.scala`
+* Run `Read Test`
