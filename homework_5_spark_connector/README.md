@@ -16,4 +16,4 @@
 
 ### Run spark postgresql datasource in IDEA
 * Go to project test file `src/test/scala/org/example/PostgresqlDriverTest.scala`
-* Run `Read Test`
+* Run Test
