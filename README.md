@@ -5,3 +5,4 @@
 3) [Чтение данных из Kafka](./homework_3_kafka)
 4) [Работа со Spark Data API](./homework_4_data_api)
 5) [Работа со Spark DataSource API V2](./homework_5_spark_connector)
+5) [Создание тестов для Spark приложения](./homework_6_spark_unittest)
