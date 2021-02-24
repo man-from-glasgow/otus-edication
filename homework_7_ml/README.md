@@ -50,7 +50,7 @@ docker exec homework_7_ml_broker_1 kafka-console-consumer \
 --topic prediction
 ```
 
-### 3. Обучить модель
+### 3. Использовать модель
 * Перейти к файлу проекта `src/main/scala/com/example/ml/main.scala`
 * Запустить в IDEA `Run 'main'` без параметров
 * Смотреть что данные появятся в топиках
