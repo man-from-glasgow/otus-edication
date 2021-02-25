@@ -6,7 +6,6 @@ import org.apache.spark.SparkContext
 import org.apache.spark.ml.{Pipeline, PipelineModel}
 import org.apache.spark.ml.classification.DecisionTreeClassifier
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
-import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}
 import org.apache.spark.sql.SparkSession
 
 object IrisClassificationTrainModel extends LazyLogging {
@@ -29,37 +28,21 @@ object IrisClassificationTrainModel extends LazyLogging {
       .format("libsvm")
       .load(s"$dataPath/iris_libsvm.txt")
 
-    val labelIndexer = new StringIndexer()
-      .setInputCol("label")
-      .setOutputCol("indexedLabel")
-      .fit(irisData)
-
-    val featureIndexer = new VectorIndexer()
-      .setInputCol("features")
-      .setOutputCol("indexedFeatures")
-      .setMaxCategories(4)
-      .fit(irisData)
-
     val Array(trainingData, testData) = irisData.randomSplit(Array(0.7, 0.3))
 
     val dt = new DecisionTreeClassifier()
-      .setLabelCol("indexedLabel")
-      .setFeaturesCol("indexedFeatures")
-
-    val labelConverter = new IndexToString()
-      .setInputCol("prediction")
-      .setOutputCol("predictedLabel")
-      .setLabels(labelIndexer.labelsArray(0))
+      .setLabelCol("label")
+      .setFeaturesCol("features")
 
     val pipeline = new Pipeline()
-      .setStages(Array(labelIndexer, featureIndexer, dt, labelConverter))
+      .setStages(Array(dt))
 
     val model = pipeline.fit(trainingData)
 
     val predictions = model.transform(testData)
 
     val evaluator = new MulticlassClassificationEvaluator()
-      .setLabelCol("indexedLabel")
+      .setLabelCol("label")
       .setPredictionCol("prediction")
       .setMetricName("accuracy")
     val accuracy = evaluator.evaluate(predictions)
